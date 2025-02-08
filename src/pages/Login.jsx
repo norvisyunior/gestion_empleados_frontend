@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://gestion-empleados-backend.vercel.app/api/auth/login",
+        "https://gestion-empleados-backend-2.vercel.app/api/auth/login",
         { email, password }
       );
       if (response.data.success) {
