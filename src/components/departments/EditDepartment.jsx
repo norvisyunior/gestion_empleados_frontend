@@ -13,7 +13,7 @@ const EditDepartment = () => {
       setDepLoading(true);
       try {
         const response = await axios.get(
-          `https://gestion-empleados-backend.vercel.app/api/department/${id}`,
+          `http://localhost:3000/api/department/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -45,7 +45,7 @@ const EditDepartment = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://gestion-empleados-backend.vercel.app/api/department/${id}`,
+        `http://localhost:3000/api/department/${id}`,
         department,
         {
           headers: {

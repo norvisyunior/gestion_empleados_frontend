@@ -9,7 +9,7 @@ const TotalSalary = () => {
 
   const fetchSalaries = async () => {
     try {
-      const response = await axios.get("https://gestion-empleados-backend.vercel.app/api/salary", {
+      const response = await axios.get("http://localhost:3000/api/salary", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
