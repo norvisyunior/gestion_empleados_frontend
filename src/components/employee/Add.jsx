@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
   const [departments, setDepartments] = useState([]);
   const [formData, setFormData] = useState({});
-  const navigate = useNavigate(); // Inicializar navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getDepartments = async () => {
@@ -27,16 +27,10 @@ const Add = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formDataObj = new FormData();
     Object.keys(formData).forEach((key) => {
       formDataObj.append(key, formData[key]);
     });
-
-    // Verificar el contenido de formDataObj
-    for (let pair of formDataObj.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
 
     try {
       const response = await axios.post(
@@ -44,6 +38,7 @@ const Add = () => {
         formDataObj,
         {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
@@ -54,11 +49,11 @@ const Add = () => {
         console.log(response.data.error);
       }
     } catch (error) {
-      console.error("Error adding employee:", error); // Registrar el error en la consola
+      console.error("Error adding employee:", error);
       if (error.response && error.response.data.error) {
         alert(`Error: ${error.response.data.error}`);
       } else {
-        alert("An unexpected error occurred. Please try again later.");
+        alert("Error en el frontend ADD empleado.");
       }
     }
   };
