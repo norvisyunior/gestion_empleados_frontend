@@ -29,7 +29,7 @@ const Edit = () => {
       setEmpLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/employee/${id}`,
+          `https://empleados-backend.vercel.app/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -71,7 +71,7 @@ const Edit = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/employee/${id}`,
+        `https://empleados-backend.vercel.app/api/employee/${id}`,
         employee,
         {
           headers: {
