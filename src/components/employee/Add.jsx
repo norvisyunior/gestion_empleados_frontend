@@ -219,8 +219,7 @@ const Add = () => {
               <option value="admin">Admin</option>
               <option value="employee">Employee</option>
             </select>
-          </div>
-       
+          </div>       
         </div>
         <button
           type="submit"
