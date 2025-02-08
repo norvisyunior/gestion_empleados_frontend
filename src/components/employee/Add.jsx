@@ -17,28 +17,19 @@ const Add = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "image") {
-      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
-    } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formDataObj = new FormData();
-    Object.keys(formData).forEach((key) => {
-      formDataObj.append(key, formData[key]);
-    });
-
     try {
       const response = await axios.post(
         "https://empleados-backend.vercel.app/api/employee/add",
-        formDataObj,
+        formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
@@ -53,7 +44,7 @@ const Add = () => {
       if (error.response && error.response.data.error) {
         alert(`Error: ${error.response.data.error}`);
       } else {
-        alert("Error en el frontend ADD empleado.");
+        alert("An unexpected error occurred. Please try again later.");
       }
     }
   };
@@ -229,21 +220,7 @@ const Add = () => {
               <option value="employee">Employee</option>
             </select>
           </div>
-          {/*Image*/}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Image
-            </label>
-            <input
-              type="file"
-              name="image"
-              onChange={handleChange}
-              placeholder="Image"
-              accept="image/*"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-              required
-            />
-          </div>
+       
         </div>
         <button
           type="submit"

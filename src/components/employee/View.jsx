@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const View = () => {
   const { id } = useParams();
@@ -9,14 +9,11 @@ const View = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const response = await axios.get(
-          `https://empleados-backend.vercel.app/api/employee/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const response = await axios.get(`https://empleados-backend.vercel.app/api/employee/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         if (response.data.success) {
           setEmployee(response.data.employee);
         }
@@ -43,13 +40,7 @@ const View = () => {
         Detalles del Empleado
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="flex justify-center">
-          <img
-            src={`http://localhost:3000/${employee.userId.profileImage}`}
-            alt="profile"
-            className="border w-72 h-72 rounded-full object-cover"
-          />
-        </div>
+        
         <div className="space-y-4">
           <p className="text-lg">
             <span className="font-semibold">Nombre:</span> {employee.userId.name}

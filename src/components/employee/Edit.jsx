@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchDepartments } from "../../utils/EmployeeHelper";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { fetchDepartments } from "../../utils/EmployeeHelper";
 
 const Edit = () => {
   const [departments, setDepartments] = useState([]);

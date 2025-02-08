@@ -16,12 +16,7 @@ export const columns = [
     width: "150px",
     center: true,
   },
-  {
-    name: "Image",
-    selector: (row) => row.profileImage,
-    width: "120px",
-    center: true,
-  },
+ 
   {
     name: "Department",
     selector: (row) => row.dep_name,

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { columns, EmployeeButtons } from "../../utils/EmployeeHelper";
+import { columns } from "../../utils/EmployeeHelper";
 import DataTable from "react-data-table-component";
 import axios from "axios";
+import EmployeeButtons from "./EmployeeButtons";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
   const [empLoading, setEmpLoading] = useState(false);
-  const [fileredEmployee, setFilteredEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -20,7 +21,7 @@ const List = () => {
         });
         if (response.data.success) {
           let sno = 1;
-          const data = await response.data.employees.map((emp) => ({
+          const data = response.data.employees.map((emp) => ({
             _id: emp._id,
             sno: sno++,
             dep_name: emp.department.dep_name,
@@ -77,7 +78,7 @@ const List = () => {
       <div className="mt-5">
         <DataTable
           columns={columns}
-          data={fileredEmployee}
+          data={filteredEmployees}
           pagination
           paginationPerPage={6}
         />
